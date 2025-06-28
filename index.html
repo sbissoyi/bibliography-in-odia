@@ -191,7 +191,9 @@
             const addCollection = () => {
                 const name = prompt(t.addCollection);
                 if (name) {
-                    setCollections([...collections, { id: Date.now(), name, items: [] }]);
+                    const newCollection = { id: Date.now(), name, items: [] };
+                    setCollections([...collections, newCollection]);
+                    setSelectedCollection(newCollection);
                 }
             };
 
