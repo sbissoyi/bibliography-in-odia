@@ -52,6 +52,7 @@
                 actions: "Actions",
                 addItem: "Add Item",
                 selectItemType: "Select Item Type",
+                okay: "Okay",
                 save: "Save",
                 cancel: "Cancel",
                 delete: "Delete",
@@ -69,7 +70,10 @@
                 invalidISBN: "Please enter a valid ISBN (10 or 13 digits)",
                 invalidISSN: "Please enter a valid ISSN (e.g., 1234-5678)",
                 error: "An error occurred. Please try again.",
-                copyright: "© Copyright 2025, Dr. Swarupananda Bissoyi"
+                copyright: "© Copyright 2025, Dr. Swarupananda Bissoyi",
+                about: "About",
+                aboutTitle: "About this Software",
+                aboutContent: "This software is a tool for managing references in Odia and English. It allows users to create, edit, and export citations for various item types, with support for bilingual interfaces. Developed by Dr. Swarupananda Bissoyi.\nEmail: swarupananda@gmail.com\n\n© Copyright 2025, Dr. Swarupananda Bissoyi"
             },
             or: {
                 changeLanguage: "ଭାଷା ବଦଳାନ୍ତୁ",
@@ -88,12 +92,13 @@
                 actions: "କାର୍ଯ୍ୟ",
                 addItem: "ଆଇଟମ୍ ଯୋଡ଼ନ୍ତୁ",
                 selectItemType: "ଆଇଟମ୍ ପ୍ରକାର ଚୟନ କରନ୍ତୁ",
+                okay: "ଠିକ୍‌ ଅଛି",
                 save: "ସଂରକ୍ଷଣ କରନ୍ତୁ",
                 cancel: "ବାତିଲ୍ କରନ୍ତୁ",
                 delete: "ଡିଲିଟ୍",
                 edit: "ସମ୍ପାଦନ",
                 confirmDeleteItem: "ଆପଣ ନିଶ୍ଚିତ କି ଏହି ଆଇଟମ୍‌କୁ ଡିଲିଟ୍ କରିବାକୁ ଚାହୁଁଛନ୍ତି?",
-                exportReferences: "ସନ୍ଦର୍ଭ ରପ୍ତାନି କରନ୍ତୁ",
+                exportReferences: "ଗ୍ରନ୍ଥସୂଚୀ ରପ୍ତାନି କରନ୍ତୁ",
                 copy: "କପି କରନ୍ତୁ",
                 download: "ଡାଉନଲୋଡ୍ କରନ୍ତୁ",
                 enterField: "{field} ପ୍ରବେଶ କରନ୍ତୁ",
@@ -105,7 +110,10 @@
                 invalidISBN: "ଦୟାକରି ଏକ ବୈଧ ISBN ପ୍ରବେଶ କରନ୍ତୁ (10 କିମ୍ବା 13 ଅଙ୍କ)",
                 invalidISSN: "ଦୟାକରି ଏକ ବୈଧ ISSN ପ୍ରବେଶ କରନ୍ତୁ (ଉଦାହରଣ: 1234-5678)",
                 error: "ଏକ ତ୍ରୁଟି ଘଟିଛି । ଦୟାକରି ପୁନର୍ବାର ଚେଷ୍ଟା କରନ୍ତୁ ।",
-                copyright: "© କପିରାଇଟ୍ ୨୦୨୫, ଡ. ସ୍ୱରୂପାନନ୍ଦ ବିଷୟୀ"
+                copyright: "© କପିରାଇଟ୍ ୨୦୨୫, ଡ. ସ୍ୱରୂପାନନ୍ଦ ବିଷୟୀ",
+                about: "ଏହି ସଫ୍ଟୱେର ବିଷୟରେ",
+                aboutTitle: "ଏହି ସଫ୍ଟୱେର ବିଷୟରେ",
+                aboutContent: "ଓଡ଼ିଆ ଏବଂ ଇଂରାଜୀରେ ଉଦ୍ଧରଣ ପରିଚାଳନା (ଗ୍ରନ୍ଥସୂଚୀ ନିର୍ମାଣ) ପାଇଁ ଏହି ସଫ୍ଟୱେର ଉଦ୍ଦିଷ୍ଟ । ଏହା ବ୍ୟବହାରକାରୀଙ୍କୁ ଗ୍ରନ୍ଥସୂଚୀର ବିଭିନ୍ନ ଆଇଟମ ପ୍ରକାର ପାଇଁ ଉଭୟ ଓଡ଼ିଆ ଏବଂ ଇଂରାଜୀରେ ଉଦ୍ଧରଣ ସୃଷ୍ଟି, ସମ୍ପାଦନ ଏବଂ ରପ୍ତାନୀ କରିବାକୁ ସାହାଯ୍ୟ କରେ । ଏହାର  ଇଣ୍ଟରଫେସ ପାଇଁ ସମର୍ଥନ ସହିତ। ଡ. ସ୍ୱରୂପାନନ୍ଦ ବିଷୟୀଙ୍କ ଦ୍ୱାରା ବିକଶିତ ।\nଇମେଲ୍‌: swarupananda@gmail.com \n\n© କପିରାଇଟ୍ ୨୦୨୫, ସ୍ୱରୂପାନନ୍ଦ ବିଷୟୀ"
             }
         };
 
@@ -221,29 +229,31 @@
             };
 
             const importCollection = () => {
-                try {
-                    const input = document.createElement('input');
-                    input.type = 'file';
-                    input.accept = '.json';
-                    input.onchange = (e) => {
-                        const file = e.target.files[0];
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.json';
+                input.onchange = (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
                         const reader = new FileReader();
                         reader.onload = (event) => {
                             try {
-                                const data = JSON.parse(event.target.result);
-                                setCollections([...collections, { ...data, id: Date.now() }]);
+                                const importedData = JSON.parse(event.target.result);
+                                if (importedData.name && Array.isArray(importedData.items)) {
+                                    const newCollection = { id: Date.now(), name: importedData.name, items: importedData.items };
+                                    setCollections([...collections, newCollection]);
+                                    setSelectedCollection(newCollection);
+                                } else {
+                                    alert(t.invalidCollectionFormat);
+                                }
                             } catch (error) {
-                                console.error('Invalid JSON file:', error);
-                                alert('Invalid JSON file');
+                                alert(t.error);
                             }
                         };
                         reader.readAsText(file);
-                    };
-                    input.click();
-                } catch (e) {
-                    console.error('Error importing collection:', e);
-                    alert(t.error);
-                }
+                    }
+                };
+                input.click();
             };
 
             const formatCreators = (creators, primaryCreatorType) => {
@@ -573,10 +583,10 @@
                 };
 
                 return (
-                    <div className="fixed right-0 top-0 h-full w-1/3 bg-white shadow-lg p-4 overflow-y-auto">
-                        <h2 className="text-xl font-bold mb-4">{editItem ? t.edit : t.addItem}</h2>
+                    <div className="fixed inset-0 md:right-0 md:top-0 md:w-1/3 bg-white shadow-lg p-4 overflow-y-auto">
+                        <h2 className="text-lg md:text-xl font-bold mb-4">{editItem ? t.edit : t.addItem}</h2>
                         <select
-                            className="w-full p-2 border rounded mb-4"
+                            className="w-full p-2 border rounded mb-4 text-sm md:text-base"
                             value={itemType}
                             onChange={(e) => setItemType(e.target.value)}
                             disabled={!!editItem}
@@ -590,33 +600,32 @@
                         </select>
                         {itemTypeData && (
                             <>
-                                {/* comment/delete the Button tag to disable Fill Random Values option */}
                                 <button
-                                    className="w-full p-2 bg-green-500 text-white rounded mb-4"
+                                    className="w-full p-2 bg-green-500 text-white rounded mb-4 text-sm md:text-base"
                                     onClick={fillRandomValues}
                                 >
                                     Fill Random Values
                                 </button>
                                 {itemTypeData.fields.map(f => (
                                     <div key={f.field} className="mb-4">
-                                        <label className="block capitalize">
+                                        <label className="block capitalize text-sm md:text-base">
                                             {f.translations[language] || f.field}
                                         </label>
                                         <input
                                             type="text"
-                                            className="w-full p-2 border rounded"
+                                            className="w-full p-2 border rounded text-sm md:text-base"
                                             value={fields[f.field] || ''}
                                             onChange={(e) => handleFieldChange(f.field, e.target.value)}
                                             placeholder={t.enterField.replace('{field}', f.translations[language] || f.field)}
                                         />
-                                        {errors[f.field] && <p className="text-red-500 text-sm">{errors[f.field]}</p>}
+                                        {errors[f.field] && <p className="text-red-500 text-xs md:text-sm">{errors[f.field]}</p>}
                                     </div>
                                 ))}
-                                <h3 className="font-semibold mb-2">{t.creator}</h3>
+                                <h3 className="font-semibold mb-2 text-sm md:text-base">{t.creator}</h3>
                                 {creators.map((c, i) => (
                                     <div key={i} className="mb-4 border p-2 rounded">
                                         <select
-                                            className="w-full p-2 border rounded mb-2"
+                                            className="w-full p-2 border rounded mb-2 text-sm md:text-base"
                                             value={c.type}
                                             onChange={(e) => handleCreatorChange(i, 'type', e.target.value)}
                                         >
@@ -629,19 +638,19 @@
                                         <input
                                             type="text"
                                             placeholder="First Name"
-                                            className="w-full p-2 border rounded mb-2"
+                                            className="w-full p-2 border rounded mb-2 text-sm md:text-base"
                                             value={c.firstName}
                                             onChange={(e) => handleCreatorChange(i, 'firstName', e.target.value)}
                                         />
                                         <input
                                             type="text"
                                             placeholder="Last Name"
-                                            className="w-full p-2 border rounded mb-2"
+                                            className="w-full p-2 border rounded mb-2 text-sm md:text-base"
                                             value={c.lastName}
                                             onChange={(e) => handleCreatorChange(i, 'lastName', e.target.value)}
                                         />
                                         <button
-                                            className="text-red-500"
+                                            className="text-red-500 text-xs md:text-sm"
                                             onClick={() => removeCreator(i)}
                                         >
                                             {t.delete}
@@ -650,7 +659,7 @@
                                 ))}
                                 {itemTypeData.creatorTypes.length > 0 && (
                                     <select
-                                        className="w-full p-2 border rounded mb-4"
+                                        className="w-full p-2 border rounded mb-4 text-sm md:text-base"
                                         onChange={(e) => addCreator(e.target.value)}
                                         value=""
                                     >
@@ -664,15 +673,15 @@
                                 )}
                             </>
                         )}
-                        <div className="flex justify-end gap-2">
+                        <div className="flex flex-col md:flex-row justify-end gap-2">
                             <button
-                                className="px-4 py-2 bg-gray-300 rounded"
+                                className="w-full md:w-auto px-4 py-2 bg-gray-300 rounded text-sm md:text-base"
                                 onClick={() => { setShowAddItem(false); setEditItem(null); }}
                             >
                                 {t.cancel}
                             </button>
                             <button
-                                className="px-4 py-2 bg-blue-500 text-white rounded"
+                                className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded text-sm md:text-base"
                                 onClick={saveItem}
                             >
                                 {t.save}
@@ -699,152 +708,175 @@
                     }
                 }
             };
-
+            const [showAbout, setShowAbout] = React.useState(false);
             return (
                 <ErrorBoundary language={language}>
-                    <div className="flex flex-col h-screen">
-                        <div className="bg-gray-800 text-white p-4 flex justify-between items-center">
-                            <h1 className="text-2xl">ଓଡ଼ିଆରେ ଗ୍ରନ୍ଥସୂଚୀ | Bibliography in Odia</h1>
-                            <select
-                                className="p-2 rounded bg-gray-700 text-white"
-                                value={language}
-                                onChange={(e) => setLanguage(e.target.value)}
-                            >
-                                <option value="en">{t.english}</option>
-                                <option value="or">{t.odia}</option>
-                            </select>
-                        </div>
-                        <div className="flex flex-1">
-                            <div className="w-1/4 bg-gray-100 p-4 border-r relative">
-                                <h2 className="text-xl font-bold mb-4">{t.collections}</h2>
+                    <div className="flex flex-col min-h-screen">
+                            <div className="bg-gray-800 text-white p-4 flex flex-col md:flex-row justify-between items-center gap-2">
+                            <h1 className="text-xl md:text-2xl">ଓଡ଼ିଆରେ ଗ୍ରନ୍ଥସୂଚୀ | Bibliography in Odia</h1>
+                            <div className="flex gap-2">
                                 <button
-                                    className="w-full p-2 bg-blue-500 text-white rounded mb-4"
+                                    className="px-4 py-2 bg-blue-500 text-white rounded text-sm md:text-base"
+                                    onClick={() => setShowAbout(true)}
+                                >
+                                    {t.about}
+                                </button>
+                                <select
+                                    className="p-2 rounded bg-gray-700 text-white text-sm md:text-base"
+                                    value={language}
+                                    onChange={(e) => setLanguage(e.target.value)}
+                                >
+                                    <option value="en">{t.english}</option>
+                                    <option value="or">{t.odia}</option>
+                                </select>
+                            </div>
+                        </div>
+                        {showAbout && (
+                            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+                                <div className="bg-white p-4 rounded shadow-lg w-full max-w-lg md:max-w-2xl">
+                                    <h2 className="text-lg md:text-xl font-bold mb-4">{t.aboutTitle}</h2>
+                                    <p className="text-sm md:text-base whitespace-pre-line mb-4">{t.aboutContent}</p>
+                                    <div className="flex justify-end">
+                                        <button
+                                            className="px-4 py-2 bg-gray-300 rounded text-sm md:text-base"
+                                            onClick={() => setShowAbout(false)}
+                                        >
+                                            {t.okay}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        <div className="flex flex-col md:flex-row flex-1">
+                            <div className="w-full md:w-1/4 bg-gray-100 p-4 border-r md:border-r flex flex-col h-full">
+                                <h2 className="text-lg md:text-xl font-bold mb-4">{t.collections}</h2>
+                                <button
+                                    className="w-full p-2 bg-blue-500 text-white rounded mb-4 text-sm md:text-base"
                                     onClick={addCollection}
                                 >
                                     {t.addCollection}
                                 </button>
-                                {collections.map(c => (
-                                    <div key={c.id} className={`flex justify-between items-center mb-2 p-2 rounded shadow ${selectedCollection?.id === c.id ? 'bg-blue-100 border border-blue-500' : 'bg-white'}`}>
-                                        <span
-                                            className={`cursor-pointer ${selectedCollection?.id === c.id ? 'font-bold text-blue-700' : ''}`}
-                                            onClick={() => setSelectedCollection(c)}
-                                        >
-                                            {c.name}
-                                        </span>
-                                        <div className="flex gap-2">
-                                            <button
-                                                className="text-blue-500"
-                                                onClick={() => exportCollection(c)}
+                                <div className="flex-1 overflow-y-auto mb-4">
+                                    {collections.map(c => (
+                                        <div key={c.id} className={`flex justify-between items-center mb-2 p-2 rounded shadow ${selectedCollection?.id === c.id ? 'bg-blue-100 border border-blue-500' : 'bg-white'}`}>
+                                            <span
+                                                className={`cursor-pointer text-sm md:text-base ${selectedCollection?.id === c.id ? 'font-bold text-blue-700' : ''}`}
+                                                onClick={() => setSelectedCollection(c)}
                                             >
-                                                {t.exportCollection}
-                                            </button>
-                                            <button
-                                                className="text-red-500"
-                                                onClick={() => deleteCollection(c.id)}
-                                            >
-                                                {t.delete}
-                                            </button>
+                                                {c.name}
+                                            </span>
+                                            <div className="flex gap-2">
+                                                <button
+                                                    className="text-blue-500 text-xs md:text-sm"
+                                                    onClick={() => exportCollection(c)}
+                                                >
+                                                    {t.exportCollection}
+                                                </button>
+                                                <button
+                                                    className="text-red-500 text-xs md:text-sm"
+                                                    onClick={() => deleteCollection(c.id)}
+                                                >
+                                                    {t.delete}
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
                                 <button
-                                    className="w-full p-2 bg-green-500 text-white rounded mt-4"
+                                    className="w-full p-2 bg-green-500 text-white rounded mb-4 text-sm md:text-base"
                                     onClick={importCollection}
                                 >
                                     {t.importCollection}
                                 </button>
-                                <div className="absolute bottom-4 left-4 text-gray-500 text-sm">
-                                    {t.copyright}
-                                </div>
                             </div>
                             <div className="flex-1 p-4">
                                 {selectedCollection && (
                                     <>
-                                        <div className="flex justify-between items-center mb-4">
-                                            <h2 className="text-xl font-bold">{selectedCollection.name}</h2>
+                                        <div className="flex flex-col md:flex-row justify-between items-center mb-4">
+                                            <h2 className="text-lg md:text-xl font-bold mb-2 md:mb-0">{selectedCollection.name}</h2>
                                             <div className="flex gap-2">
                                                 <button
-                                                    className="px-4 py-2 bg-blue-500 text-white rounded"
+                                                    className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded text-sm md:text-base"
                                                     onClick={() => setShowAddItem(true)}
                                                 >
                                                     {t.addItem}
                                                 </button>
                                                 <button
-                                                    className="px-4 py-2 bg-purple-500 text-white rounded"
+                                                    className="w-full md:w-auto px-4 py-2 bg-purple-500 text-white rounded text-sm md:text-base"
                                                     onClick={() => exportReferences(selectedCollection)}
                                                 >
                                                     {t.exportReferences}
                                                 </button>
                                             </div>
                                         </div>
-                                        <table className="w-full border-collapse">
-                                            <thead>
-                                                <tr className="bg-gray-200">
-                                                    <th className="border p-2">{t.title}</th>
-                                                    <th className="border p-2">{t.creator}</th>
-                                                    <th className="border p-2">{t.dateAdded}</th>
-                                                    <th className="border p-2">{t.itemType}</th>
-                                                    <th className="border p-2">{t.actions}</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {selectedCollection.items.map(item => {
-                                                    const itemType = itemTypesData.find(it => it.itemType === item.itemType);
-                                                    return (
-                                                        <tr key={item.id} className="border">
-                                                            <td className="p-2">{item.fields.title || item.fields.caseName || item.fields.nameOfAct || item.fields.subject || '[No title]'}</td>
-                                                            <td className="p-2">
-                                                                {item.creators.map(c => `${c.firstName} ${c.lastName}`).join(', ')}
-                                                            </td>
-                                                            <td className="p-2">{new Date(item.dateAdded).toLocaleDateString()}</td>
-                                                            <td className="p-2">{itemType ? (itemType.translations[language] || itemType.itemType) : item.itemType}</td>
-                                                            <td className="p-2 flex gap-2">
-                                                                <button
-                                                                    className="text-blue-500"
-                                                                    onClick={() => { setEditItem(item); setShowAddItem(true); }}
-                                                                >
-                                                                    {t.edit}
-                                                                </button>
-                                                                <button
-                                                                    className="text-red-500"
-                                                                    onClick={() => deleteItem(item.id)}
-                                                                >
-                                                                    {t.delete}
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                    );
-                                                })}
-                                            </tbody>
-                                        </table>
+                                        <div className="overflow-x-auto">
+                                            <table className="w-full border-collapse text-sm md:text-base">
+                                                <thead>
+                                                    <tr className="bg-gray-200">
+                                                        <th className="border p-2">{t.title}</th>
+                                                        <th className="border p-2">{t.creator}</th>
+                                                        <th className="border p-2">{t.dateAdded}</th>
+                                                        <th className="border p-2">{t.itemType}</th>
+                                                        <th className="border p-2">{t.actions}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {selectedCollection.items.map(item => {
+                                                        const itemType = itemTypesData.find(it => it.itemType === item.itemType);
+                                                        return (
+                                                            <tr key={item.id} className="border">
+                                                                <td className="p-2">{item.fields.title || item.fields.caseName || item.fields.nameOfAct || item.fields.subject || '[No title]'}</td>
+                                                                <td className="p-2">{item.creators.map(c => `${c.firstName} ${c.lastName}`).join(', ')}</td>
+                                                                <td className="p-2">{new Date(item.dateAdded).toLocaleDateString()}</td>
+                                                                <td className="p-2">{itemType ? (itemType.translations[language] || itemType.itemType) : item.itemType}</td>
+                                                                <td className="p-2 flex gap-2">
+                                                                    <button
+                                                                        className="text-blue-500 text-xs md:text-sm"
+                                                                        onClick={() => { setEditItem(item); setShowAddItem(true); }}
+                                                                    >
+                                                                        {t.edit}
+                                                                    </button>
+                                                                    <button
+                                                                        className="text-red-500 text-xs md:text-sm"
+                                                                        onClick={() => deleteItem(item.id)}
+                                                                    >
+                                                                        {t.delete}
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        );
+                                                    })}
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </>
                                 )}
                             </div>
                             {showAddItem && <AddItemForm />}
                             {showReferences && (
-                                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                                    <div className="bg-white p-4 rounded shadow-lg w-1/2">
-                                        <h2 className="text-xl font-bold mb-4">{t.exportReferences}</h2>
+                                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+                                    <div className="bg-white p-4 rounded shadow-lg w-full max-w-lg md:max-w-2xl">
+                                        <h2 className="text-lg md:text-xl font-bold mb-4">{t.exportReferences}</h2>
                                         <textarea
-                                            className="w-full h-64 p-2 border rounded mb-4 font-mono text-sm"
+                                            className="w-full h-64 p-2 border rounded mb-4 font-mono text-xs md:text-sm"
                                             value={referencesText}
                                             readOnly
                                         />
-                                        <div className="flex justify-end gap-2">
+                                        <div className="flex flex-col md:flex-row justify-end gap-2">
                                             <button
-                                                className="px-4 py-2 bg-blue-500 text-white rounded"
+                                                className="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded text-sm md:text-base"
                                                 onClick={copyReferences}
                                             >
                                                 {t.copy}
                                             </button>
                                             <button
-                                                className="px-4 py-2 bg-green-500 text-white rounded"
+                                                className="w-full md:w-auto px-4 py-2 bg-green-500 text-white rounded text-sm md:text-base"
                                                 onClick={downloadReferences}
                                             >
                                                 {t.download}
                                             </button>
                                             <button
-                                                className="px-4 py-2 bg-gray-300 rounded"
+                                                className="w-full md:w-auto px-4 py-2 bg-gray-300 rounded text-sm md:text-base"
                                                 onClick={() => setShowReferences(false)}
                                             >
                                                 {t.cancel}
